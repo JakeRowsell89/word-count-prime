@@ -1,0 +1,25 @@
+{
+  "name": "wordcount",
+  "version": "1.0.0",
+  "description": "Count per-word how many times it occurs in a text",
+  "main": "index.js",
+  "scripts": {
+    "dev": "chokidar '**.js'"
+  },
+  "author": "Jake Rowsell-Messchaert",
+  "license": "ISC",
+  "devDependencies": {
+    "chokidar-cli": "^1.2.0",
+    "jest": "^19.0.2",
+    "standard": "^10.0.1"
+  },
+  "standard": {
+    "globals": [
+      "test",
+      "expect"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
