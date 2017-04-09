@@ -1,6 +1,6 @@
 {
-  "name": "wordcount",
-  "version": "1.0.0",
+  "name": "word-count-prime",
+  "version": "0.9.0",
   "description": "Count per-word how many times it occurs in a text",
   "main": "index.js",
   "scripts": {
@@ -28,5 +28,8 @@
     "console.table": "^0.8.0",
     "prime-check": "^1.0.0",
     "split": "^1.0.0"
+  },
+  "bin": {
+    "word-count-prime": "index.js"
   }
 }
