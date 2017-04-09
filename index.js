@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const tabula = require('tabula')
 const { getWordCountAndIfPrime } = require('./lib/main')
 const file = process.argv.slice(2)[0]
