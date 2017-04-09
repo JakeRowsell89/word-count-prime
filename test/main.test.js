@@ -16,8 +16,8 @@ afterAll(() => {
 })
 
 test('getWordCountForPath(<invalidPath> rejects with an error)', () => {
-  return getWordCountForPath(nonExistantFile).catch(e => {
-    expect(e.message).toEqual('file not found')
+  return getWordCountForPath(nonExistantFile).catch(err => {
+    expect(err.message).toEqual('file not found')
   })
 })
 
@@ -43,8 +43,8 @@ test('getWordCountForPath(<validPath>) returns the counts of each word', () => {
 })
 
 test('getWordCountAndIfPrime(<invalidPath>) rejects with an error', () => {
-  getWordCountAndIfPrime(nonExistantFile).catch(e => {
-    expect(e.message).toEqual('file not found')
+  getWordCountAndIfPrime(nonExistantFile).catch(err => {
+    expect(err.message).toEqual('file not found')
   })
 })
 

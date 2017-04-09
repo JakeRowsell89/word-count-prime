@@ -27,7 +27,7 @@ test('filter() should accept an input stream and return output', () => {
     filterStream.on('finish', () => {
       resolve(true)
     })
-  }).then(d => expect(d).toEqual(true))
+  }).then(data => expect(data).toEqual(true))
 })
 
 test('filter() should apply a transformation function and return a filtered stream', () => {

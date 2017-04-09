@@ -6,6 +6,6 @@ const title = `Occurrences of words in ${file}`
 getWordCountAndIfPrime(file).then(words => {
   process.stdout.write('\u001B[2J\u001B[0;0F')
   console.table(title, words)
-}).catch(e => {
-  process.stdout.write(e.message + '\n')
+}).catch(err => {
+  process.stdout.write(err.message + '\n')
 })

@@ -23,11 +23,11 @@ test('getSanitizedText() returns a promise', () => {
 })
 
 test('getSanitizedText(<invalidFilename>) returns a Promise that errors', () => {
-  return getSanitizedText(nonExistantFile).catch(e => expect(e.message).toEqual('file not found'))
+  return getSanitizedText(nonExistantFile).catch(err => expect(err.message).toEqual('file not found'))
 })
 
 test('getSanitizedText(<validFilename>) returns a Promise that resolves to a stream', () => {
-  return getSanitizedText(existantFile).then(d => expect(d).toBeInstanceOf(Stream))
+  return getSanitizedText(existantFile).then(data => expect(data).toBeInstanceOf(Stream))
 })
 
 test('getSanitizedText(<validFilename>) resolves to a stream of lowercase text with no special characters', () => {

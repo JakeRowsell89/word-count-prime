@@ -18,7 +18,7 @@ test('readFile returns a promise', () => {
 })
 
 test('Attempting to read an non-existing file will throw an error', () => {
-  return readFile(existantFile).catch(e => expect(e.message).toEqual('file not found'))
+  return readFile(existantFile).catch(err => expect(err.message).toEqual('file not found'))
 })
 
 test('Reading an existing file will return a promise containing a Readable stream', () => {
