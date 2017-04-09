@@ -5,9 +5,11 @@ Takes a plaintext input file (aimed at .txt) and returns a list of the amount of
 ## See For Yourself
 
 To see this in action you can download an executable by running:
+
 `npm install -g word-count-prime`
 
 This should allow you to process file contents with the command `word-count-prime`:
+
 `word-count-prime <file_name.txt>`
 
 ## Development
@@ -28,7 +30,7 @@ This will setup an environment that watches changes to your JavaScript files and
 To run this all you need is 
 
 ```
-Node v6.9.0 or higher
+Node >=v6.9.0
 NPM
 ```
 
@@ -38,4 +40,5 @@ NPM
 
 ## Acknowledgments
 
-* Readme structure taken from https://gist.github.com/PurpleBooth/109311bb0361f32d87a2#file-readme-template-md
+* Readme structure taken from:
+ https://gist.github.com/PurpleBooth/109311bb0361f32d87a2#file-readme-template-md
