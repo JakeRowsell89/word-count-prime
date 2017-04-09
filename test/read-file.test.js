@@ -3,7 +3,6 @@ const path = require('path')
 const { Readable } = require('stream')
 const readFile = require('../lib/read-file')
 const existantFile = path.resolve(__dirname, './test-file.txt')
-// const existantFileRelative = path.relative(path.resolve(__dirname, '../lib/read-file'), existantFile)
 const fileContents = 'Test'
 
 beforeAll(() => {
