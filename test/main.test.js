@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const { getWordCountForPath, getWordCountAndIfPrime } = require('../lib/index')
+const { getWordCountForPath, getWordCountAndIfPrime } = require('../lib/main')
 const existantFile = path.resolve(__dirname, './test-file.txt')
 const nonExistantFile = 'nonExistant' + existantFile
 const fileContents = 'Test this text! Is, being sanitized!'
