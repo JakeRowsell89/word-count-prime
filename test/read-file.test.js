@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const { Readable } = require('stream')
+const { Stream } = require('stream')
 const readFile = require('../lib/read-file')
 const existantFile = path.resolve(__dirname, './test-file.txt')
 const fileContents = 'Test'
@@ -22,7 +22,7 @@ test('Attempting to read an non-existing file will throw an error', () => {
 })
 
 test('Reading an existing file will return a promise containing a Readable stream', () => {
-  return readFile(existantFile).then(data => expect(data).toBeInstanceOf(Readable))
+  return readFile(existantFile).then(data => expect(data).toBeInstanceOf(Stream))
 })
 
 test('Readable stream contents after completion should be the same as fileContents', () => {
