@@ -25,6 +25,7 @@
     "testEnvironment": "node"
   },
   "dependencies": {
+    "prime-check": "^1.0.0",
     "split": "^1.0.0"
   }
 }

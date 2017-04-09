@@ -1,10 +1,11 @@
 const fs = require('fs')
 const path = require('path')
-const { Stream } = require('stream')
-const { sanitize, getWordCount, getSanitizedText } = require('../lib/index')
+const { getWordCountForPath, getWordCountAndIfPrime } = require('../lib/index')
 const existantFile = path.resolve(__dirname, './test-file.txt')
 const nonExistantFile = 'nonExistant' + existantFile
 const fileContents = 'Test this text! Is, being sanitized!'
+const primeFileContents = 'Test, 1!test test'
+const nonPrimeFileContents = 'test'
 
 beforeAll(() => {
   fs.writeFileSync(existantFile, fileContents)
@@ -14,37 +15,49 @@ afterAll(() => {
   fs.unlink(existantFile)
 })
 
-test('getWordCount() returns a promise', () => {
-  expect(getWordCount()).toBeInstanceOf(Promise)
+test('getWordCountForPath(<invalidPath> rejects with an error)', () => {
+  return getWordCountForPath(nonExistantFile).catch(e => {
+    expect(e.message).toEqual('file not found')
+  })
 })
 
-test('sanitize() removes capitalisation and non-space special characters from a string', () => {
-  expect(sanitize(fileContents)).toEqual('test this text is being sanitized')
+test('getWordCountForPath(<validPath>) returns a promise', () => {
+  expect(getWordCountForPath(existantFile)).toBeInstanceOf(Promise)
 })
 
-test('getSanitizedText() returns a promise', () => {
-  expect(getSanitizedText()).toBeInstanceOf(Promise)
+test('getWordCountForPath(<validPath>) resolves to an object', () => {
+  return getWordCountForPath(existantFile).then(data => expect(typeof data).toEqual('object'))
 })
 
-test('getSanitizedText(<invalidFilename>) returns a Promise that errors', () => {
-  return getSanitizedText(nonExistantFile).catch(e => expect(e.message).toEqual('file not found'))
+test('getWordCountForPath(<validPath>) returns the counts of each word', () => {
+  return getWordCountForPath(existantFile).then(data => {
+    expect(data).toEqual([
+{ word: 'test', amount: 1 },
+{ word: 'this', amount: 1 },
+{ word: 'text', amount: 1 },
+{ word: 'is', amount: 1 },
+{ word: 'being', amount: 1 },
+{ word: 'sanitized', amount: 1 }
+    ])
+  })
 })
 
-test('getSanitizedText(<validFilename>) returns a Promise that resolves to a stream', () => {
-  return getSanitizedText(existantFile).then(d => expect(d).toBeInstanceOf(Stream))
+test('getWordCountAndIfPrime(<invalidPath>) rejects with an error', () => {
+  getWordCountAndIfPrime(nonExistantFile).catch(e => {
+    expect(e.message).toEqual('file not found')
+  })
 })
 
-test('getSanitizedText(<validFilename>) resolves to a stream of lowercase text with no special characters', () => {
-  return getSanitizedText(existantFile).then(stream => {
-    return new Promise((resolve, reject) => {
-      let result = ''
-      stream.on('data', (chunk) => {
-        result += chunk
-      })
-      stream.on('end', () => {
-        const cleanFileContents = sanitize(fileContents)
-        resolve(result === cleanFileContents)
-      })
-    }).then(data => expect(data).toEqual(true))
+test('getWordCountAndIfPrime(<validPath>) with primeFileContents returns [{test: {amount: 3, prime: true}]', () => {
+  fs.writeFileSync(existantFile, primeFileContents)
+  return getWordCountAndIfPrime(existantFile).then(data => {
+    expect(data).toEqual([{'word': 'test', 'amount': 3, 'prime': true}])
+  })
+})
+
+test('getWordCountAndIfPrime(<validPath>) with nonPrimeFileContents returns [{test: {amount: 1, prime: false}]', () => {
+  fs.writeFileSync(existantFile, nonPrimeFileContents)
+  return getWordCountAndIfPrime(existantFile).then(data => {
+    expect(data).toEqual([{'word': 'test', 'amount': 1, 'prime': false}])
   })
 })
