@@ -2,15 +2,21 @@
 
 Takes a plaintext input file (aimed at .txt) and returns a list of the amount of occurrences each word has in the text. It also shows if that number is a prime or not.
 
-## Getting Started
+## See For Yourself
 
 To see this in action you can download an executable by running:
-`npm install -g word-count-prime'
+`npm install -g word-count-prime`
+
+This should allow you to process file contents with the command `word-count-prime`:
+`word-count-prime <file_name.txt>`
+
+## Development
 
 To develop this you can run the following commands:
 ```
 mkdir <your_directory>
 cd <your_directory>
+git clone git@github.com:JakeRowsell89/word-count-prime.git
 npm install
 npm run dev
 ```
