@@ -4,7 +4,7 @@
   "description": "Count per-word how many times it occurs in a text",
   "main": "index.js",
   "scripts": {
-    "dev": "chokidar '**.js'"
+    "dev": "chokidar '**/**.js' -c 'standard && jest'"
   },
   "author": "Jake Rowsell-Messchaert",
   "license": "ISC",
@@ -16,7 +16,9 @@
   "standard": {
     "globals": [
       "test",
-      "expect"
+      "expect",
+      "beforeAll",
+      "afterAll"
     ]
   },
   "jest": {

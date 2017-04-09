@@ -1,3 +1,4 @@
+
 // read input text
 // strip characters
 // collect words
